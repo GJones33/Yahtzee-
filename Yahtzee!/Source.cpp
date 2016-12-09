@@ -25,6 +25,7 @@ void six();
 
 int numrolls[5];
 int runningtotal;
+string numreroll;
 
 int main()
 {
@@ -53,7 +54,10 @@ int main()
 	cout << endl;
 	cout << "Which (if any) of these dice would you like to re-roll?" << endl;
 	cout << "If you don't want to re-roll any of them, just enter '0': ";
-
+	cin >> numreroll;
+	if (numreroll[1] != 0)
+		reroll();
+	
 
 
 	return 0;
@@ -126,6 +130,7 @@ void rules()
 }
 void scoretable()
 {
+
 }
 void one()
 {
