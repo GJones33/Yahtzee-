@@ -1,10 +1,5 @@
 ﻿  Source.cpp
-z:\yahtzee!\yahtzee!\yahtzee!\source.cpp(42): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-z:\yahtzee!\yahtzee!\yahtzee!\source.cpp(137): warning C4552: '+': operator has no effect; expected operator with side-effect
-z:\yahtzee!\yahtzee!\yahtzee!\source.cpp(150): warning C4552: '+': operator has no effect; expected operator with side-effect
-z:\yahtzee!\yahtzee!\yahtzee!\source.cpp(163): warning C4552: '+': operator has no effect; expected operator with side-effect
-z:\yahtzee!\yahtzee!\yahtzee!\source.cpp(176): warning C4552: '+': operator has no effect; expected operator with side-effect
-z:\yahtzee!\yahtzee!\yahtzee!\source.cpp(189): warning C4552: '+': operator has no effect; expected operator with side-effect
-z:\yahtzee!\yahtzee!\yahtzee!\source.cpp(202): warning C4552: '+': operator has no effect; expected operator with side-effect
-  Yahtzee!.vcxproj -> Z:\Yahtzee!\Yahtzee!\Debug\Yahtzee!.exe
-  Yahtzee!.vcxproj -> Z:\Yahtzee!\Yahtzee!\Debug\Yahtzee!.pdb (Full PDB)
+z:\yahtzee!\yahtzee!\source.cpp(45): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+z:\yahtzee!\yahtzee!\source.cpp(112): warning C4018: '<': signed/unsigned mismatch
+  Yahtzee!.vcxproj -> Z:\Yahtzee!\Debug\Yahtzee!.exe
+  Yahtzee!.vcxproj -> Z:\Yahtzee!\Debug\Yahtzee!.pdb (Full PDB)

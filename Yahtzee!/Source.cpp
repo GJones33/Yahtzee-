@@ -15,17 +15,17 @@ void roll();
 void scoretable();
 void introduction();
 void rules();
-void one();
-void two();
-void three();
-void four();
-void five();
-void six();
+int upper(int selection);
+void reroll();
+void categories();
 
+int numrolls[6];
+int upperboard[7];
 
-int numrolls[5];
-int runningtotal;
+int runningtotal = 0; 
 string numreroll;
+int selection;
+int game = 3;
 
 int main()
 {
@@ -39,26 +39,46 @@ int main()
 
 	username();
 
-	const int size = 6;
-	srand(time(NULL));
-
-	for (int i = 1; i < size; i++)
+	for (int z = 1; z < game; z++)
 	{
-		int diceroll = rand() % 6 + 1;
-		numrolls[i] = diceroll;
+		const int size = 6;
+		srand(time(NULL));
+
+		for (int i = 1; i < size; i++)
+		{
+			int diceroll = rand() % 6 + 1;
+			numrolls[i] = diceroll;
+		}
+
+		cout << "Here is your 1 roll!" << endl;
+		roll();
+
+		for (int x = 2; x < 4; x++)
+		{
+			cout << endl;
+			cout << "Which (if any) of these dice would you like to re-roll?" << endl;
+			cout << "If you don't want to re-roll any of them, just enter '0': ";
+			cin >> numreroll;
+
+			if (numreroll[0] != '0')
+			{
+				reroll();
+				cout << endl;
+				cout << "Here is your " << x << " roll!" << endl;
+				cout << endl;
+				roll();
+			}
+			else if (numreroll[0] == '0')
+				break;
+		}
+
+		cout << endl;
+		categories();
+
+		cout << endl;
+		scoretable();
+		cout << endl;
 	}
-	
-	cout << "Here is your first roll!" << endl;
-	roll();
-
-	cout << endl;
-	cout << "Which (if any) of these dice would you like to re-roll?" << endl;
-	cout << "If you don't want to re-roll any of them, just enter '0': ";
-	cin >> numreroll;
-	if (numreroll[1] != 0)
-		reroll();
-	
-
 
 	return 0;
 }
@@ -89,6 +109,35 @@ void roll()
 }
 void reroll()
 {
+	for (int x = 0; x < numreroll.length(); x++)
+	{
+		if (numreroll[x] == '1')
+		{
+			int diceroll = rand() % 6 + 1;
+			numrolls[1] = diceroll;
+		}
+		else if (numreroll[x] == '2')
+		{
+			int diceroll = rand() % 6 + 1;
+			numrolls[2] = diceroll;
+		}
+		else if (numreroll[x] == '3')
+		{
+			int diceroll = rand() % 6 + 1;
+			numrolls[3] = diceroll;
+		}
+		else if (numreroll[x] == '4')
+		{
+			int diceroll = rand() % 6 + 1;
+			numrolls[4] = diceroll;
+		}
+		else if (numreroll[x] == '5')
+		{
+			int diceroll = rand() % 6 + 1;
+			numrolls[5] = diceroll;
+		}
+	}	
+	
 
 }
 void username()
@@ -130,83 +179,102 @@ void rules()
 }
 void scoretable()
 {
+	cout << "UPPER SECTION" << endl;
+	cout << "------------------- " << endl;
+	cout << "One: " << upperboard[1] << setw(10) << "Two: " << upperboard[2] << setw(13) << "Three: " << upperboard[3] << endl;
+	cout << "Four: " << upperboard[4] << setw(10) << "Five: " << upperboard[5] << setw(10) << "Six: " << upperboard[6] << endl;
+	cout << endl;
+	cout << "LOWER SECTION" << endl;
+	cout << "------------------- " << endl;
+	cout << "Total Points: " << runningtotal << endl;
 
 }
-void one()
+void categories()
 {
-	int numones = 0;
-	int onetotal;
-	for (int x = 0; x < 5; x++)
+	cout << "Which category would you like to score these rolls in?" << endl;
+	cout << endl;
+	cout << "1. Ones" << endl;
+	cout << "2. Twos" << endl;
+	cout << "3. Threes" << endl;
+	cout << "4. Fours" << endl;
+	cout << "5. Fives" << endl;
+	cout << "6. Sixes" << endl;
+	cout << "7. 3 of a kind" << endl;
+	cout << "8. 4 of a kind" << endl;
+	cout << "9. Full House" << endl;
+	cout << "10. Small Straight" << endl;
+	cout << "11. Large Straight" << endl;
+	cout << "12. Yahtzee" << endl;
+	cout << "13. Chance" << endl;
+
+	cout << endl;
+
+	cout << "Please enter in the number that corresponds to the category: ";
+	cin >> selection;
+
+	if (selection == 1)
 	{
-		if (numrolls[x] == 1)
-			numones + 1;
+		upperboard[1] = upper(1);
+	}
+	else if (selection == 2)
+	{
+		upperboard[2] = upper(2);
+	}
+	else if (selection == 3)
+	{
+		upperboard[3] = upper(3);
+	}
+	else if (selection == 4)
+	{
+		upperboard[4] = upper(4);
+	}
+	else if (selection == 5)
+	{
+		upperboard[5] = upper(5);
+	}
+	else if (selection == 6)
+	{
+		upperboard[6] = upper(6);
+	}
+
+}
+
+int upper(int selection)
+{
+	int num = 0;
+	for (int x = 1; x < 6; x++)
+	{
+		if (numrolls[x] == selection)
+			num++;
 
 	}
-	onetotal = numones * 1;
-	runningtotal = runningtotal + onetotal;
-}
-void two()
-{
-	int numtwos = 0;
-	int twototal;
-	for (int x = 0; x < 5; x++)
-	{
-		if (numrolls[x] == 2)
-			numtwos + 1;
+	int total = num * selection;
+	runningtotal = runningtotal + total;
 
-	}
-	twototal = numtwos * 2;
-	runningtotal = runningtotal + twototal;
+	return total;
 }
-void three()
+int threekind()
 {
-	int numthrees = 0;
-	int threetotal;
-	for (int x = 0; x < 5; x++)
-	{
-		if (numrolls[x] == 3)
-			numthrees + 1;
-
-	}
-	threetotal = numthrees * 3;
-	runningtotal = runningtotal + threetotal;
+	
 }
-void four()
+int fourkind()
 {
-	int numfours = 0;
-	int fourtotal;
-	for (int x = 0; x < 5; x++)
-	{
-		if (numrolls[x] == 4)
-			numfours + 1;
 
-	}
-	fourtotal = numfours * 4;
-	runningtotal = runningtotal + fourtotal;
 }
-void five()
+int fullhouse()
 {
-	int numfives = 0;
-	int fivetotal;
-	for (int x = 0; x < 5; x++)
-	{
-		if (numrolls[x] == 5)
-			numfives + 1;
 
-	}
-	fivetotal = numfives * 5;
-	runningtotal = runningtotal + fivetotal;
 }
-void six()
+int smstraight()
 {
-	int numsixs=0;
-	int sixtotal;
-	for (int x = 0; x < 5; x++)
-	{
-		if (numrolls[x] == 6)
-			numsixs + 1;
 
-	}
-	sixtotal = numsixs * 6;
-	runningtotal = runningtotal + sixtotal;
 }
+int lgstraight()
+{
+
+}
+int yahtzee()
+{
+
+}
+
